@@ -70,12 +70,24 @@ int main(void)
 			PrintProcessNameAndID(aProcesses[i]);
 		}
 	}
-	ofstream myfile;
-	myfile.open("Log.txt");
+		ofstream myfile;
+	myfile.open("Log.txt"); //Creates a txt file with the process list 
 	myfile << aProcesses;
-	cout << "Press any key to close";
+	cout << "\n Press ENTER to continue\n";
 	string close;
-	cin >> close;
-	return 0;
+	getline(std::cin, close);
+
+
+	cout << " Write the name of the Process(default extension is .exe)\n";
+	cout << " Type 'exit' to finish the execution\n";
+		string name;
+	cin >> name;
+	if (name =="exit") { system("taskkill /f /im ProcessKiller.exe"); }
+	else {
+		system(("taskkill /f /im " + name + ".exe").c_str()); //Kills the process by its name
+	}
+		return 0;
+
+	
 }
 
